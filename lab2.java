@@ -1,10 +1,11 @@
-package labolatoria_2;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class zadanie_1 {
+public class lab2 {
 
 	public static enum Marka{
 		POLONEZ("Polonez"), FIAT("Fiat"), SYRENA("Syrena");
@@ -37,42 +38,30 @@ public class zadanie_1 {
 				}
 			}
 		}
+		public int getRocznik() {
+			return rocznik;
+		}
 		public String getMarka() {
 			String temp = Marka.FIAT.name();
 			return temp;
 		}
 		@Override
 		public String toString() {
-			return "Marka: " + this.marka.nazwa +" Cena: " + (int)this.cena + " Rocznik: " + this.rocznik + "\n";
+			return "Marka: " + this.marka.nazwa +", Cena: " + (int)this.cena + " z≈Ç, Rocznik: " + this.rocznik + ",\n";
 		}
 		void zwracaj(char a) {
 			
 		}
 	}
-	
-	public static void najstarszy(List list) {
-		
-	}
-	public static void niestarszy(List list) {
-		
-	}
-	public static void najmlodszy(List list) {
-		
-	}
-	public static void niemlodszy(List list) {
-		
-	}
-	public static void domyslne(List list) {
-		System.out.println(list);
-	}
-	
+
+
 	public static void main(String[] args) {
 
 		EasyReader console = new EasyReader();
 		
 		System.out.println("Ile wylosowac samochodow? ");
 		int a = console.readInt();
-		System.out.println("Wybierz kryterium:\n1. Najstarszy\n2. Nie starszy niø\n3. Najm≥odszy\n4. Nie m≥odszy niø\n");
+		System.out.println("Wybierz kryterium:\n1. Najstarszy\n2. Nie starszy ni≈º\n3. Najm≈Çodszy\n4. Nie m≈Çodszy ni≈º\n");
 		int choice = console.readInt();
 		
 		List<Samochod> auta = new ArrayList<>();
@@ -83,20 +72,43 @@ public class zadanie_1 {
 		
 		//sortowanie list itd itp
 		
+		auta.sort((o1, o2) -> Integer.compare(o1.getRocznik(), o2.getRocznik())); //sortowanie
 		switch(choice) {
-		case 1:
-			najstarszy(auta);
+		case 1: 									//najstarszy
+			System.out.println(auta.get(0));
 			break;
-		case 2:
-			niestarszy(auta);
+		case 2: { 									//niestarszy
+			System.out.println("Podaj rocznik: ");
+			int yr = console.readInt();
+			
+			for (int i=0;i<auta.size();i++) {
+				int rok = auta.get(i).rocznik;
+				if(rok >= yr) {
+					System.out.println(auta.get(i));
+					}
+			
+				}
+			}
 			break;
-		case 3:
-			najmlodszy(auta);
+		case 3: 									//najmlodszy(auta);
+			System.out.println(auta.get(auta.size()-1));
 			break;
-		case 4:
-			niemlodszy(auta);
+		case 4: { 									//niemlodszy
+			System.out.println("Podaj rocznik: ");
+			int yr = console.readInt();
+			
+			for (int i=0;i<auta.size();i++) {
+				int rok = auta.get(i).rocznik;
+				if(rok <= yr) {
+					System.out.println(auta.get(i));
+					}
+			
+				}
+			}
 			break;
-		default:
+		default: //domyslne(auta);
+			System.out.println(auta);
+			break;
 			
 		}
 		
