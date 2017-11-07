@@ -1,4 +1,5 @@
-package labolatoria_2;
+package lab3;
+
 import java.io.*;
 
 /**
@@ -270,4 +271,3 @@ public class EasyReader
       return 0.0;
   }
 }
-
