@@ -66,13 +66,13 @@ public class lab32 {
 			List<WordObject> tmpList = LetterObject.assignedList;
 			System.out.println(workingList.get(i).letter);
 			while(k < tmpList.size()){
-				if(tmpList.get(k).getWord() == imiona.Anna.toString()) {
+				if(!tmpList.get(k).getWord().compareTo(imiona.Anna.toString())) {
 					imiona.Anna.addCount(tmpList.get(k).fileIndex);
 				}
-				if(tmpList.get(k).getWord() == imiona.Piotr.toString()) {
+				if(!tmpList.get(k).getWord().compareTo(imiona.Piotr.toString())) {
 					imiona.Piotr.addCount(tmpList.get(k).fileIndex);
 				}
-				if(tmpList.get(k).getWord() == imiona.Tomasz.toString()) {
+				if(!tmpList.get(k).getWord().compareTo(imiona.Tomasz.toString())) {
 					imiona.Tomasz.addCount(tmpList.get(k).fileIndex);
 				}
 				
