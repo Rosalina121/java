@@ -11,7 +11,7 @@ public class lab32 {
 	
 	public static enum imiona{
 		Anna("Anna"), Piotr("Piotr"), Tomasz("Tomasz");
-		private String nazwa;
+		private final String nazwa;
 		private int count[] = {0,0,0};
 
 		private imiona(String nazwa1) {
@@ -25,7 +25,7 @@ public class lab32 {
 			count[i]++;
 		}
 		
-		@Override
+		
 		public String toString() {
 			return nazwa;
 		}
@@ -55,33 +55,47 @@ public class lab32 {
 		}
 	}
 	
-	public static List<WordObject> sortWords(List<WordObject> list) {
-		Collections.sort(list, (p1, p2) -> p1.getWord().compareTo(p2.getWord()));
-		return list;
-	}
-	
 	public static void nameCounter(List<LetterObject> workingList) {
+		int k;
 		for(int i=0;i<26;i++) {
-			workingList.get(i).assignedList = sortWords(workingList.get(i).assignedList);
+
+			k=0;
+			workingList.get(i);
+			Collections.sort(LetterObject.assignedList, (p1, p2) -> p1.getWord().compareTo(p2.getWord()));
+			workingList.get(i);
+			List<WordObject> tmpList = LetterObject.assignedList;
 			System.out.println(workingList.get(i).letter);
-			for(int j=0;j<workingList.get(i).assignedList.size();j++) {
-				System.out.println("---------\n" + workingList.get(i).assignedList.get(j).getWord());
-				switch(workingList.get(i).assignedList.get(j).getWord()) {
-				case "Anna": 
-					System.out.println(workingList.get(i).assignedList.get(j).fileIndex);
-					imiona.Anna.addCount(workingList.get(i).assignedList.get(j).fileIndex);	
-					break;
-				case "Piotr":
-					System.out.println(workingList.get(i).assignedList.get(j).fileIndex);
-					imiona.Piotr.addCount(workingList.get(i).assignedList.get(j).fileIndex);
-					break;
-				case "Tomasz":
-					System.out.println(workingList.get(i).assignedList.get(j).fileIndex);
-					imiona.Tomasz.addCount(workingList.get(i).assignedList.get(j).fileIndex);
-					break;
+			while(k < tmpList.size()){
+				if(tmpList.get(k).getWord() == imiona.Anna.toString()) {
+					imiona.Anna.addCount(tmpList.get(k).fileIndex);
 				}
+				if(tmpList.get(k).getWord() == imiona.Piotr.toString()) {
+					imiona.Piotr.addCount(tmpList.get(k).fileIndex);
+				}
+				if(tmpList.get(k).getWord() == imiona.Tomasz.toString()) {
+					imiona.Tomasz.addCount(tmpList.get(k).fileIndex);
+				}
+				
+				System.out.println(tmpList.get(k).getWord());
+				/*
+				switch (tmpList.get(k).getWord()) {
+				case "Anna": imiona.Anna.addCount(tmpList.get(k).fileIndex);
+					break;
+				case "Piotr": imiona.Piotr.addCount(tmpList.get(k).fileIndex);
+					break;
+				case "Tomasz": imiona.Tomasz.addCount(tmpList.get(k).fileIndex);
+					break;
+				}*/
+				k++;
+			}	
+			
+				
 			}
-		}				
+		
+
+		
+	
+			
 	}
 	
 	public static List<WordObject> checkDuplicates(List<WordObject> list) {
@@ -98,11 +112,11 @@ public class lab32 {
 
 	public static void main(String[] args) throws IOException {
 		List<LetterObject> letterList = new ArrayList<>();
-		List<String> desperationList = new ArrayList<>();
+		List<String> fileList = new ArrayList<>();
 		List<String> testList = new ArrayList<>();
 		EasyReader console = new EasyReader();
 		
-		char c = 'a';					//wypelnienie listy liter
+		char c = 'a';						//wypelnienie listy liter
 		for(int i=0;i<26;i++) {
 			letterList.add(new LetterObject(c));
 			c++;
@@ -117,41 +131,42 @@ public class lab32 {
 			
 			EasyReader newFile = new EasyReader(fileName);
 			
-			String line = newFile.readLine();
+			String line = newFile.readLine();//tworzenie listy z zawartoscia pliku
 			while(line != null){
-			   desperationList.add(line);
+			   fileList.add(line);
 			   line = newFile.readLine();
 			}
 			newFile.close();
 			
-			System.out.println(desperationList);
+			System.out.println(fileList);
 			
-			c = 'a';
-			for(int j=0;j<26;j++) {
-
+			
+			for(int j=0;j<26;j++) { 		//wypelniane listy slow dla kazdej litery
 				k = 0;
-				do {
-					
-						if(desperationList.get(k).charAt(0) == c || desperationList.get(k).charAt(0) == Character.toUpperCase(c)) {
-							System.out.println(c);
-							System.out.println(desperationList.get(k));
+				while(k < fileList.size()){
+						if(fileList.get(k).charAt(0) == Character.toUpperCase(letterList.get(j).letter)) {
+							System.out.println(fileList.get(k));
+							System.out.println(fileList.get(k).charAt(0));
 							System.out.println(letterList.get(j).letter);
 							
-							letterList.get(j).assignedList.add(new WordObject(desperationList.get(k),i));
-							testList.add(desperationList.get(k));
-						}
-					
-					k++;
-				}while(k < desperationList.size());
-				c++;
+							letterList.get(j);
+							LetterObject.assignedList.add(new WordObject(fileList.get(k),i));
+							testList.add(fileList.get(k));
+							}	
+						k++;
+						
+					}
+				System.out.println(testList);
+				testList.clear();
 				
 			}
-			desperationList.clear();
+			fileList.clear();
 			
-			System.out.println(testList);
-			testList.clear();
+
 			
 		}
+		
+		nameCounter(letterList); 			//zliczanie imion
 		
 		for(int i=0;i<26;i++) {				//sprawdzenie duplikatow
 			letterList.get(i);
@@ -159,11 +174,7 @@ public class lab32 {
 			LetterObject.assignedList = checkDuplicates(LetterObject.assignedList);
 		}
 		
-
-		nameCounter(letterList); //zliczanie imion
-
-		for(int i=0;i<3;i++) {
-			
+		for(int i=0;i<3;i++) {	
 		System.out.println("W pliku: " + i + " Anna wystepuje: " + imiona.Anna.getCount(i) + " razy, Piotr wystepuje: " + imiona.Piotr.getCount(i) + " razy, Tomasz wystepuje: " + imiona.Tomasz.getCount(i) + " razy.");
 		}
 	}

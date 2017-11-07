@@ -1,10 +1,7 @@
-aaa
 Anna
-baca
-ceca
-d
-e
-f
-g
-h
+Anna
+Lampa
+Okno
 Piotr
+Pietruszka
+Cynamon
