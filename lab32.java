@@ -56,10 +56,8 @@ public class lab32 {
 	}
 	
 	public static void nameCounter(List<LetterObject> workingList) {
-		int k;
+		int k = 0, i=0;
 		
-
-			k=0;
 			workingList.get(i);
 			Collections.sort(LetterObject.assignedList, (p1, p2) -> p1.getWord().compareTo(p2.getWord()));
 			workingList.get(i);
@@ -76,16 +74,8 @@ public class lab32 {
 					imiona.Tomasz.addCount(tmpList.get(k).fileIndex);
 				}
 				
-				System.out.println(tmpList.get(k).getWord());
-				/*
-				switch (tmpList.get(k).getWord()) {
-				case "Anna": imiona.Anna.addCount(tmpList.get(k).fileIndex);
-					break;
-				case "Piotr": imiona.Piotr.addCount(tmpList.get(k).fileIndex);
-					break;
-				case "Tomasz": imiona.Tomasz.addCount(tmpList.get(k).fileIndex);
-					break;
-				}*/
+				
+				
 				k++;
 			}	
 			
