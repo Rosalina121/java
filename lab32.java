@@ -57,7 +57,7 @@ public class lab32 {
 	
 	public static void nameCounter(List<LetterObject> workingList) {
 		int k;
-		for(int i=0;i<26;i++) {
+		
 
 			k=0;
 			workingList.get(i);
@@ -90,7 +90,7 @@ public class lab32 {
 			}	
 			
 				
-			}
+			
 		
 
 		
