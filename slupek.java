@@ -20,15 +20,15 @@ import javax.swing.JCheckBox;
 
 public class slupek {
 	public static class BarElement{
-		int value;
+		double value;
 		Color color;
-		BarElement(int value){
+		BarElement(double d){
 			int r, g, b;
 			Random rand  = new Random();
 			r = rand.nextInt(255);
 			g = rand.nextInt(255);
 			b = rand.nextInt(255);
-			this.value = value;
+			this.value = d;
 			Color color = new Color(r,g,b);
 			this.color = color;
 		}
@@ -36,7 +36,7 @@ public class slupek {
 	
 	public class zad2 extends JPanel{
 
-		private Map<Color, Integer> bars = new LinkedHashMap<Color, Integer>();
+		private Map<Color, Double> bars = new LinkedHashMap<Color, Double>();
 		
 		public void addBar(BarElement bar) {
 			bars.put(bar.color, bar.value);
@@ -54,8 +54,8 @@ public class slupek {
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			int max = Integer.MIN_VALUE;
-			for(Integer value : bars.values()) {
+			double max = Double.MIN_VALUE;
+			for(Double value : bars.values()) {
 				max = Math.max(max, value);
 			}
 			if(bars.size()!=0) {
@@ -63,7 +63,7 @@ public class slupek {
 			
 			int x = 1;
 			for(Color color : bars.keySet()) {
-				int value = bars.get(color);
+				double value = bars.get(color);
 				int height = (int)((getHeight()-5)*((double)value / max));
 				g.setColor(color);
 				g.fillRect(x, getHeight()-height, width, height);
@@ -124,7 +124,7 @@ public class slupek {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 450, 212);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -233,7 +233,7 @@ public class slupek {
                 if(txtbox1.isSelected()) {
                 	String tmp = textField.getText();
                 	if(isNumeric(tmp)) {
-                		barList.set(0,new BarElement(Integer.parseInt(tmp)));     
+                		barList.set(0,new BarElement(Double.parseDouble(tmp)));     
                 		for(int i=0;i<barList.size();i++) {
                 			chart.removeBar(barList.get(i));
                 			if(barList.get(i)!=null) chart.addBar(barList.get(i));
@@ -258,7 +258,7 @@ public class slupek {
                 if(txtbox2.isSelected()) {
                 	String tmp = textField_1.getText();
                 	if(isNumeric(tmp)) {
-                		barList.set(1,new BarElement(Integer.parseInt(tmp)));    
+                		barList.set(1,new BarElement(Double.parseDouble(tmp)));    
                 		for(int i=0;i<barList.size();i++) {
                 			chart.removeBar(barList.get(i));
                 			if(barList.get(i)!=null) chart.addBar(barList.get(i));
@@ -278,7 +278,7 @@ public class slupek {
                 if(txtbox3.isSelected()) {
                 	String tmp = textField_2.getText();
                 	if(isNumeric(tmp)) {
-                		barList.set(2,new BarElement(Integer.parseInt(tmp)));    
+                		barList.set(2,new BarElement(Double.parseDouble(tmp)));    
                 		for(int i=0;i<barList.size();i++) {
                 			chart.removeBar(barList.get(i));
                 			if(barList.get(i)!=null) chart.addBar(barList.get(i));
@@ -298,7 +298,7 @@ public class slupek {
                 if(txtbox4.isSelected()) {
                 	String tmp = textField_3.getText();
                 	if(isNumeric(tmp)) {
-                		barList.set(3,new BarElement(Integer.parseInt(tmp)));    
+                		barList.set(3,new BarElement(Double.parseDouble(tmp)));    
                 		for(int i=0;i<barList.size();i++) {
                 			chart.removeBar(barList.get(i));
                 			if(barList.get(i)!=null) chart.addBar(barList.get(i));
@@ -318,7 +318,7 @@ public class slupek {
                 if(txtbox5.isSelected()) {
                 	String tmp = textField_4.getText();
                 	if(isNumeric(tmp)) {
-                		barList.set(4,new BarElement(Integer.parseInt(tmp)));    
+                		barList.set(4,new BarElement(Double.parseDouble(tmp)));    
                 		for(int i=0;i<barList.size();i++) {
                 			chart.removeBar(barList.get(i));
                 			if(barList.get(i)!=null) chart.addBar(barList.get(i));
@@ -338,7 +338,7 @@ public class slupek {
                 if(txtbox6.isSelected()) {
                 	String tmp = textField_5.getText();
                 	if(isNumeric(tmp)) {
-                		barList.set(5,new BarElement(Integer.parseInt(tmp)));    
+                		barList.set(5,new BarElement(Double.parseDouble(tmp)));    
                 		for(int i=0;i<barList.size();i++) {
                 			chart.removeBar(barList.get(i));
                 			if(barList.get(i)!=null) chart.addBar(barList.get(i));
@@ -358,7 +358,7 @@ public class slupek {
                 if(txtbox7.isSelected()) {
                 	String tmp = textField_6.getText();
                 	if(isNumeric(tmp)) {
-                		barList.set(6,new BarElement(Integer.parseInt(tmp)));    
+                		barList.set(6,new BarElement(Double.parseDouble(tmp)));    
                 		for(int i=0;i<barList.size();i++) {
                 			chart.removeBar(barList.get(i));
                 			if(barList.get(i)!=null) chart.addBar(barList.get(i));
@@ -378,7 +378,7 @@ public class slupek {
                 if(txtbox8.isSelected()) {
                 	String tmp = textField_7.getText();
                 	if(isNumeric(tmp)) {
-                		barList.set(7,new BarElement(Integer.parseInt(tmp)));    
+                		barList.set(7,new BarElement(Double.parseDouble(tmp)));    
                 		for(int i=0;i<barList.size();i++) {
                 			chart.removeBar(barList.get(i));
                 			if(barList.get(i)!=null) chart.addBar(barList.get(i));
@@ -398,7 +398,7 @@ public class slupek {
                 if(txtbox9.isSelected()) {
                 	String tmp = textField_8.getText();
                 	if(isNumeric(tmp)) {
-                		barList.set(8,new BarElement(Integer.parseInt(tmp)));    
+                		barList.set(8,new BarElement(Double.parseDouble(tmp)));    
                 		for(int i=0;i<barList.size();i++) {
                 			chart.removeBar(barList.get(i));
                 			if(barList.get(i)!=null) chart.addBar(barList.get(i));
@@ -418,7 +418,7 @@ public class slupek {
                 if(txtbox10.isSelected()) {
                 	String tmp = textField_9.getText();
                 	if(isNumeric(tmp)) {
-                		barList.set(9,new BarElement(Integer.parseInt(tmp)));    
+                		barList.set(9,new BarElement(Double.parseDouble(tmp)));    
                 		for(int i=0;i<barList.size();i++) {
                 			chart.removeBar(barList.get(i));
                 			if(barList.get(i)!=null) chart.addBar(barList.get(i));
