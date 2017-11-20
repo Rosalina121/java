@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-@SuppressWarnings("serial")
 public class piechart extends JPanel {
 	
 	public piechart() {
