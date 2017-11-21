@@ -19,9 +19,6 @@ public class kolowy {
 	private JFrame frame;
 	private JTextField textField;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -35,9 +32,6 @@ public class kolowy {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public void genColor() {
 		Random rand  = new Random();
 		int red = rand.nextInt(255);
@@ -46,30 +40,24 @@ public class kolowy {
 		piechart.colors.add(new Color(red,green,blue));
 	}
 	
-	public void remColor() {
-		piechart.colors.remove(piechart.colors.size());
-	}
-	
 	public kolowy() {
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
+	JList<Double> lista;
 	DefaultListModel<Double> listmodel;
-	JList<Double> list;
+	
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(0, 0, 500, 420);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JDesktopPane desktopPane = new JDesktopPane();
 		frame.getContentPane().add(desktopPane, BorderLayout.CENTER);
 		
 		piechart panel = new piechart();
-		panel.setBounds(270, 45, 120, 121);
+		panel.setBounds(270, 45, 140, 140);
 		desktopPane.add(panel);
 		
 		textField = new JTextField();
@@ -104,7 +92,7 @@ public class kolowy {
 		JButton usun = new JButton("usun");
 		usun.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int index = list.getSelectedIndex();
+				int index = lista.getSelectedIndex();
 				if(index>=0)
 				{
 					listmodel.remove(index);	
@@ -123,7 +111,7 @@ public class kolowy {
 				try
 				{
 					Double val= Double.parseDouble(textField.getText());
-					int index = list.getSelectedIndex();
+					int index = lista.getSelectedIndex();
 					if(index>=0)
 					{
 						listmodel.remove(index);
@@ -146,11 +134,11 @@ public class kolowy {
 		
 		listmodel = new DefaultListModel<Double>();
 		
-		list = new JList<Double>();
-		list.setModel((ListModel<Double>)listmodel);
-		list.setSize(186, 121);
+		lista = new JList<Double>();
+		lista.setModel((ListModel<Double>)listmodel);
+		lista.setSize(186, 121);
 		
-		list.setLocation(0, 0);
+		lista.setLocation(0, 0);
 		
 		
 		JScrollPane listScroller = new JScrollPane(list);
