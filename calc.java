@@ -222,7 +222,7 @@ public class calc {
 		frame.getContentPane().add(clear);
 		clear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				minibr.clear();
+				if(minibr.size()!=0) minibr.remove(minibr.size()-1);
 				textPane.setText(listToString(minibr));
 			}
 
@@ -330,7 +330,8 @@ public class calc {
 					textPane.setText(listToString(minibr));
 					break;
 				case 3:
-					//ogarnij
+					//tmp = tmp1.replaceAll(tmp2, "");
+					//tmp = tmp1.replaceAll(tmp, "");
 					minibr.add("=" + tmp);
 					textPane.setText(listToString(minibr));
 					break;
